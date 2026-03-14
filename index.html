@@ -43,22 +43,15 @@ border-radius:20px;
 margin-bottom:15px;
 }
 
-/* neon glow wish box */
+/* wish box */
 
 .wish-box{
-
 background:rgba(0,0,0,0.25);
-
 border:2px solid #ff4da6;
-
 padding:20px;
-
 border-radius:18px;
-
 max-width:340px;
-
 margin-top:10px;
-
 box-shadow:
 0 0 10px #ff4da6,
 0 0 20px #ff4da6,
@@ -80,6 +73,15 @@ cursor:pointer;
 margin-top:15px;
 }
 
+#countdown{
+font-size:90px;
+font-weight:bold;
+text-shadow:
+0 0 10px white,
+0 0 20px #ff4da6,
+0 0 40px #ff4da6;
+}
+
 .typing{
 font-size:20px;
 max-width:350px;
@@ -95,7 +97,7 @@ animation:blinkCursor .8s infinite;
 }
 
 .neon{
-font-size:40px;
+font-size:45px;
 text-shadow:
 0 0 10px #ff4da6,
 0 0 20px #ff4da6,
@@ -108,9 +110,7 @@ text-shadow:
 
 </div></div><!-- Loading --><div class="slide"><div class="box"><h1>Loading Surprise... ❤️</h1><button onclick="nextSlide()">Next 👉</button>
 
-</div></div><!-- Birthday --><div class="slide"><h1 style="font-size:55px;">
-Happy Birthday My Baby 😚🩷🫶🥮
-</h1><button onclick="nextSlide()">Next 👉</button>
+</div></div><!-- Countdown --><div class="slide" id="countdownSlide"><h1 id="countdown">3</h1></div><!-- Birthday --><div class="slide"><h1 class="neon">Happy Birthday My Baby 😚🩷🫶🥮</h1><button onclick="nextSlide()">Next 👉</button>
 
 </div><!-- Love Letter --><div class="slide" id="loveSlide"><p class="typing" id="loveText"></p><button id="nextBtn" onclick="nextSlide()" style="display:none;">
 Tap Next Page 👉
@@ -173,7 +173,6 @@ Happy Birthday once again baby 🎂💋
 </div><script>
 
 let slides=document.querySelectorAll(".slide")
-
 let index=0
 
 function nextSlide(){
@@ -184,13 +183,53 @@ index++
 
 slides[index].classList.add("active")
 
+if(slides[index].id=="countdownSlide"){
+startCountdown()
+}
+
 if(slides[index].id=="loveSlide"){
 startTyping()
 }
 
-if(index==4){
+if(index==5){
 document.getElementById("music").play()
 }
+
+}
+
+/* countdown */
+
+function startCountdown(){
+
+let count=3
+
+let el=document.getElementById("countdown")
+
+let timer=setInterval(()=>{
+
+if(count>1){
+
+count--
+
+el.innerHTML=count
+
+}
+
+else{
+
+el.innerHTML="🎂"
+
+clearInterval(timer)
+
+setTimeout(()=>{
+
+nextSlide()
+
+},1500)
+
+}
+
+},1000)
 
 }
 
