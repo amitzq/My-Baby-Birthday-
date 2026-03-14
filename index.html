@@ -102,27 +102,27 @@ text-shadow:
 0 0 40px #ff4da6;
 }
 
-/* falling hearts */
+/* Falling Hearts */
 
-.heart{
+.falling-heart{
 position:fixed;
-top:-10px;
-color:#ff4d6d;
-animation:fall 5s linear infinite;
+top:-20px;
+pointer-events:none;
+animation:fall 6s linear forwards;
 }
 
 @keyframes fall{
-0%{transform:translateY(-10px)}
-100%{transform:translateY(110vh)}
+0%{transform:translateY(-20px) rotate(0deg);opacity:1;}
+100%{transform:translateY(110vh) rotate(360deg);opacity:0;}
 }
 
-/* 3D glowing hearts */
+/* 3D Glowing Hearts */
 
 .glow-heart{
 position:fixed;
 bottom:-50px;
+pointer-events:none;
 color:#ff4da6;
-font-size:25px;
 
 text-shadow:
 0 0 5px #ff4da6,
@@ -130,48 +130,27 @@ text-shadow:
 0 0 20px #ff4da6,
 0 0 40px #ff4da6;
 
-animation:heartFloat 6s linear forwards;
+animation:glowFloat 7s linear forwards;
 }
 
-@keyframes heartFloat{
-
-0%{
-transform:translateY(0) scale(0.5) rotate(0deg);
-opacity:0;
+@keyframes glowFloat{
+0%{transform:translateY(0) scale(0.6) rotate(0deg);opacity:0;}
+20%{opacity:1;}
+100%{transform:translateY(-110vh) scale(1.3) rotate(360deg);opacity:0;}
 }
 
-20%{
-opacity:1;
-}
-
-100%{
-transform:translateY(-110vh) scale(1.2) rotate(360deg);
-opacity:0;
-}
-
-}
-
-/* rose petals */
+/* Rose Petals */
 
 .rose{
 position:fixed;
-top:-50px;
-font-size:24px;
+top:-40px;
+pointer-events:none;
 animation:roseFall linear forwards;
 }
 
 @keyframes roseFall{
-
-0%{
-transform:translateY(-50px) rotate(0deg);
-opacity:1;
-}
-
-100%{
-transform:translateY(110vh) rotate(360deg);
-opacity:0;
-}
-
+0%{transform:translateY(-40px) rotate(0deg);opacity:1;}
+100%{transform:translateY(110vh) rotate(360deg);opacity:0;}
 }
 
 </style>
@@ -182,7 +161,7 @@ opacity:0;
 
 <audio id="music" src="Song.mp3"></audio>
 
-<!-- intro -->
+<!-- Intro -->
 
 <div class="slide active">
 
@@ -197,7 +176,7 @@ made something special for you 🎁
 
 </div>
 
-<!-- surprise -->
+<!-- Surprise -->
 
 <div class="slide">
 
@@ -212,7 +191,7 @@ Tap next to see it 😚
 
 </div>
 
-<!-- countdown -->
+<!-- Countdown -->
 
 <div class="slide" id="countdownSlide">
 
@@ -220,7 +199,7 @@ Tap next to see it 😚
 
 </div>
 
-<!-- slide1 -->
+<!-- Slide1 -->
 
 <div class="slide">
 
@@ -232,7 +211,7 @@ Tap next to see it 😚
 
 </div>
 
-<!-- slide2 -->
+<!-- Slide2 -->
 
 <div class="slide">
 
@@ -250,24 +229,7 @@ I feel lucky to have you ❤️
 
 </div>
 
-<!-- slide3 -->
-
-<div class="slide">
-
-<img src="IMG.jpg">
-
-<p>
-You are my sunshine ☀️<br>
-You are my happiness 💞<br>
-You are my everything ❤️<br>
-Your love means the world to me 🌎
-</p>
-
-<button onclick="nextSlide()">Next 👉</button>
-
-</div>
-
-<!-- final -->
+<!-- Final -->
 
 <div class="slide">
 
@@ -280,6 +242,8 @@ Your love means the world to me 🌎
 </div>
 
 <script>
+
+/* slides */
 
 let slides=document.querySelectorAll(".slide")
 let index=0
@@ -357,83 +321,63 @@ setTimeout(typeWriter,40)
 /* exit */
 
 function exitPage(){
-
 document.body.style.opacity="0"
-
 setTimeout(()=>{
 window.open('','_self')
 window.close()
 },1000)
-
 }
 
-/* falling hearts */
+/* Falling hearts */
 
-setInterval(()=>{
+function createFallingHeart(){
 
 let heart=document.createElement("div")
-
-heart.className="heart"
-
+heart.className="falling-heart"
 heart.innerHTML="❤️"
-
 heart.style.left=Math.random()*100+"vw"
-
-heart.style.fontSize=(10+Math.random()*20)+"px"
+heart.style.fontSize=(12+Math.random()*20)+"px"
 
 document.body.appendChild(heart)
 
-setTimeout(()=>{
-heart.remove()
-},5000)
+setTimeout(()=>{heart.remove()},6000)
 
-},300)
+}
 
-/* glowing hearts */
+setInterval(createFallingHeart,400)
 
-function createHearts(){
+/* Glowing hearts */
+
+function createGlowHeart(){
 
 let heart=document.createElement("div")
-
 heart.className="glow-heart"
-
-heart.innerHTML="❤"
-
+heart.innerHTML="💖"
 heart.style.left=Math.random()*100+"vw"
-
 heart.style.fontSize=(20+Math.random()*30)+"px"
 
 document.body.appendChild(heart)
 
-setTimeout(()=>{
-heart.remove()
-},6000)
+setTimeout(()=>{heart.remove()},7000)
 
 }
 
-setInterval(createHearts,400)
+setInterval(createGlowHeart,600)
 
-/* rose petals */
+/* Rose petals */
 
 function createRose(){
 
 let rose=document.createElement("div")
-
 rose.className="rose"
-
 rose.innerHTML="🌹"
-
 rose.style.left=Math.random()*100+"vw"
-
 rose.style.fontSize=(20+Math.random()*20)+"px"
-
 rose.style.animationDuration=(4+Math.random()*4)+"s"
 
 document.body.appendChild(rose)
 
-setTimeout(()=>{
-rose.remove()
-},8000)
+setTimeout(()=>{rose.remove()},8000)
 
 }
 
