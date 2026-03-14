@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -18,6 +19,8 @@ overflow:hidden;
 transition:1s;
 }
 
+/* slides */
+
 .slide{
 display:none;
 height:100vh;
@@ -31,6 +34,8 @@ padding:30px;
 display:flex;
 }
 
+/* images */
+
 img{
 width:260px;
 height:260px;
@@ -39,6 +44,8 @@ border-radius:20px;
 margin-bottom:20px;
 box-shadow:0 10px 25px rgba(0,0,0,0.4);
 }
+
+/* button */
 
 button{
 padding:14px 28px;
@@ -58,16 +65,15 @@ background:white;
 color:#ff4da6;
 }
 
+/* countdown */
+
 #countdown{
 font-size:70px;
 font-weight:bold;
 text-shadow:0 0 10px white,0 0 20px #ff4da6,0 0 40px #ff4da6;
 }
 
-.neon{
-font-size:40px;
-text-shadow:0 0 5px #ff4da6,0 0 10px #ff4da6,0 0 20px #ff4da6,0 0 40px #ff4da6;
-}
+/* typing */
 
 .typing{
 font-size:18px;
@@ -85,6 +91,19 @@ animation:blinkCursor 0.7s infinite;
 100%{border-color:white}
 }
 
+/* neon */
+
+.neon{
+font-size:40px;
+text-shadow:
+0 0 5px #ff4da6,
+0 0 10px #ff4da6,
+0 0 20px #ff4da6,
+0 0 40px #ff4da6;
+}
+
+/* falling hearts */
+
 .heart{
 position:fixed;
 top:-10px;
@@ -97,14 +116,73 @@ animation:fall 5s linear infinite;
 100%{transform:translateY(110vh)}
 }
 
+/* 3D glowing hearts */
+
+.glow-heart{
+position:fixed;
+bottom:-50px;
+color:#ff4da6;
+font-size:25px;
+
+text-shadow:
+0 0 5px #ff4da6,
+0 0 10px #ff4da6,
+0 0 20px #ff4da6,
+0 0 40px #ff4da6;
+
+animation:heartFloat 6s linear forwards;
+}
+
+@keyframes heartFloat{
+
+0%{
+transform:translateY(0) scale(0.5) rotate(0deg);
+opacity:0;
+}
+
+20%{
+opacity:1;
+}
+
+100%{
+transform:translateY(-110vh) scale(1.2) rotate(360deg);
+opacity:0;
+}
+
+}
+
+/* rose petals */
+
+.rose{
+position:fixed;
+top:-50px;
+font-size:24px;
+animation:roseFall linear forwards;
+}
+
+@keyframes roseFall{
+
+0%{
+transform:translateY(-50px) rotate(0deg);
+opacity:1;
+}
+
+100%{
+transform:translateY(110vh) rotate(360deg);
+opacity:0;
+}
+
+}
+
 </style>
+
 </head>
 
 <body>
 
 <audio id="music" src="Song.mp3"></audio>
 
-<!-- Intro -->
+<!-- intro -->
 
 <div class="slide active">
 
@@ -119,7 +197,7 @@ made something special for you 🎁
 
 </div>
 
-<!-- Surprise -->
+<!-- surprise -->
 
 <div class="slide">
 
@@ -134,7 +212,7 @@ Tap next to see it 😚
 
 </div>
 
-<!-- Countdown -->
+<!-- countdown -->
 
 <div class="slide" id="countdownSlide">
 
@@ -142,7 +220,7 @@ Tap next to see it 😚
 
 </div>
 
-<!-- Slide1 -->
+<!-- slide1 -->
 
 <div class="slide">
 
@@ -154,7 +232,7 @@ Tap next to see it 😚
 
 </div>
 
-<!-- Slide2 -->
+<!-- slide2 -->
 
 <div class="slide">
 
@@ -172,7 +250,7 @@ I feel lucky to have you ❤️
 
 </div>
 
-<!-- Slide3 -->
+<!-- slide3 -->
 
 <div class="slide">
 
@@ -189,7 +267,7 @@ Your love means the world to me 🌎
 
 </div>
 
-<!-- Final -->
+<!-- final -->
 
 <div class="slide">
 
@@ -239,6 +317,7 @@ el.innerHTML=count+"..."
 }
 
 else if(count==1){
+
 count--
 el.innerHTML="Happy Birthday My Love 🎂💖"
 clearInterval(timer)
@@ -278,21 +357,28 @@ setTimeout(typeWriter,40)
 /* exit */
 
 function exitPage(){
+
 document.body.style.opacity="0"
+
 setTimeout(()=>{
 window.open('','_self')
 window.close()
 },1000)
+
 }
 
-/* hearts */
+/* falling hearts */
 
 setInterval(()=>{
 
 let heart=document.createElement("div")
+
 heart.className="heart"
+
 heart.innerHTML="❤️"
+
 heart.style.left=Math.random()*100+"vw"
+
 heart.style.fontSize=(10+Math.random()*20)+"px"
 
 document.body.appendChild(heart)
@@ -302,6 +388,56 @@ heart.remove()
 },5000)
 
 },300)
+
+/* glowing hearts */
+
+function createHearts(){
+
+let heart=document.createElement("div")
+
+heart.className="glow-heart"
+
+heart.innerHTML="❤"
+
+heart.style.left=Math.random()*100+"vw"
+
+heart.style.fontSize=(20+Math.random()*30)+"px"
+
+document.body.appendChild(heart)
+
+setTimeout(()=>{
+heart.remove()
+},6000)
+
+}
+
+setInterval(createHearts,400)
+
+/* rose petals */
+
+function createRose(){
+
+let rose=document.createElement("div")
+
+rose.className="rose"
+
+rose.innerHTML="🌹"
+
+rose.style.left=Math.random()*100+"vw"
+
+rose.style.fontSize=(20+Math.random()*20)+"px"
+
+rose.style.animationDuration=(4+Math.random()*4)+"s"
+
+document.body.appendChild(rose)
+
+setTimeout(()=>{
+rose.remove()
+},8000)
+
+}
+
+setInterval(createRose,500)
 
 </script>
 
