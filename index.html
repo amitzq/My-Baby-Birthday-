@@ -16,6 +16,7 @@ background:linear-gradient(135deg,#ff9a9e,#fbc2eb,#a18cd1);
 color:white;
 text-align:center;
 overflow:hidden;
+transition:1s;
 }
 
 /* slides */
@@ -46,10 +47,8 @@ animation:zoom 8s infinite alternate;
 }
 
 @keyframes zoom{
-
 from{transform:scale(1)}
 to{transform:scale(1.1)}
-
 }
 
 /* button */
@@ -332,21 +331,42 @@ index++
 
 slides[index].classList.add("active")
 
+if(index==3){
+startCountdown()
+}
+
 if(index==4){
-
 document.getElementById("music").play()
-
 typeWriter()
-
 }
 
 }
 
-/* exit */
+/* countdown */
 
-function exitPage(){
+function startCountdown(){
 
-window.close()
+let count=3
+let el=document.getElementById("countdown")
+
+let timer=setInterval(()=>{
+
+if(count>1){
+
+count--
+el.innerHTML=count+"..."
+
+}
+
+else if(count==1){
+
+count--
+el.innerHTML="Happy Birthday My Love 🎂💖"
+clearInterval(timer)
+
+}
+
+},1000)
 
 }
 
@@ -360,7 +380,7 @@ You are my happiness 🥰
 I promise to stay with you forever ❤️
 Love you so much baby 😚💋`
 
-let i = 0
+let i=0
 
 function typeWriter(){
 
@@ -376,35 +396,20 @@ setTimeout(typeWriter,40)
 
 }
 
-/* countdown */
+/* exit */
 
-let count = 3
+function exitPage(){
 
-setInterval(()=>{
+document.body.style.opacity="0"
 
-let el=document.getElementById("countdown")
+setTimeout(()=>{
 
-if(el){
-
-if(count>1){
-
-count--
-
-el.innerHTML=count+"..."
-
-}
-
-else if(count==1){
-
-count--
-
-el.innerHTML="Happy Birthday My Love 🎂💖"
-
-}
-
-}
+window.open('','_self')
+window.close()
 
 },1000)
+
+}
 
 /* hearts */
 
