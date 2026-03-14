@@ -9,7 +9,6 @@ font-family:sans-serif;
 color:white;
 text-align:center;
 overflow:hidden;
-
 background:linear-gradient(-45deg,#ff9a9e,#fad0c4,#fbc2eb,#a18cd1);
 background-size:400% 400%;
 animation:bgmove 10s infinite;
@@ -57,9 +56,9 @@ cursor:pointer;
 margin-top:15px;
 }
 
-.neon{
-font-size:45px;
-text-shadow:0 0 10px #ff4da6,0 0 20px #ff4da6,0 0 40px #ff4da6;
+#countdown{
+font-size:80px;
+font-weight:bold;
 }
 
 .typing{
@@ -76,10 +75,9 @@ animation:blinkCursor .8s infinite;
 100%{border-color:white}
 }
 
-.exit{
-transform:translateX(100%);
-opacity:0;
-transition:1s;
+.neon{
+font-size:40px;
+text-shadow:0 0 10px #ff4da6,0 0 20px #ff4da6,0 0 40px #ff4da6;
 }
 
 .love{
@@ -96,45 +94,44 @@ animation:loveFall linear forwards;
 
 </style></head><body><audio id="music" src="Song.mp3"></audio>
 
-<!-- Birthday Page --><div class="slide active"><div class="box">
-<h1 class="neon">Happy Birthday My Love 🎂💖</h1>
+<!-- Tap For Surprise --><div class="slide active"><div class="box">
+<h1>💖 Tap For Your Surprise 💖</h1>
+<button onclick="nextSlide()">Tap Next Page 👉</button>
+</div></div><!-- Loading Page --><div class="slide"><div class="box">
+<h1>Loading Surprise... ❤️</h1>
 <button onclick="nextSlide()">Next 👉</button>
-</div></div><!-- Love Letter Page --><div class="slide" id="loveSlide"><p class="typing" id="loveText"></p></div><!-- Baby --><div class="slide"><img src="Baby.jpg"><p>
+</div></div><!-- Countdown --><div class="slide" id="countdownSlide"><h1 id="countdown">3</h1></div><!-- Love Letter --><div class="slide" id="loveSlide"><p class="typing" id="loveText"></p><button id="nextBtn" onclick="nextSlide()" style="display:none;">
+Tap Next Page 👉
+</button></div><!-- Baby --><div class="slide"><img src="Baby.jpg"><p>
 Happy Birthday My Love 🎂❤️<br>
 You are my happiness 😘<br>
-Your smile melts my heart 💗<br>
-I love you forever 💋
-</p><div class="box">
-<button onclick="nextSlide()">Next 👉</button>
-</div></div><!-- Cute --><div class="slide"><img src="Cute.jpg"><p>
+Your smile melts my heart 💗
+</p><button onclick="nextSlide()">Next 👉</button>
+
+</div><!-- Cute --><div class="slide"><img src="Cute.jpg"><p>
 You are my dream girl 😍<br>
-Your eyes shine like stars 🌟<br>
 Life is beautiful with you 💞
-</p><div class="box">
-<button onclick="nextSlide()">Next 👉</button>
-</div></div><!-- IMG --><div class="slide"><img src="IMG.jpg"><p>
-Every moment with you is magical ✨<br>
-You make my life beautiful 🌸
-</p><div class="box">
-<button onclick="nextSlide()">Next 👉</button>
-</div></div><!-- Lxm --><div class="slide"><img src="Lxm.jpg"><p>
-I feel lucky to have you ❤️<br>
+</p><button onclick="nextSlide()">Next 👉</button>
+
+</div><!-- IMG --><div class="slide"><img src="IMG.jpg"><p>
+Every moment with you is magical ✨
+</p><button onclick="nextSlide()">Next 👉</button>
+
+</div><!-- Lxm --><div class="slide"><img src="Lxm.jpg"><p>
 You are my sunshine ☀️
-</p><div class="box">
-<button onclick="nextSlide()">Next 👉</button>
-</div></div><!-- Pic --><div class="slide"><img src="Pic.jpg"><p>
-Your love means everything 💖<br>
-I promise to stay with you forever 🫶
-</p><div class="box">
-<button onclick="nextSlide()">Next 👉</button>
-</div></div><!-- bb --><div class="slide"><img src="bb.jpg"><p>
-My heart beats for you 💗<br>
+</p><button onclick="nextSlide()">Next 👉</button>
+
+</div><!-- Pic --><div class="slide"><img src="Pic.jpg"><p>
+Your love means everything 💖
+</p><button onclick="nextSlide()">Next 👉</button>
+
+</div><!-- bb --><div class="slide"><img src="bb.jpg"><p>
 I can't imagine life without you 😘
-</p><div class="box">
-<button onclick="nextSlide()">Next 👉</button>
-</div></div><!-- Final --><div class="slide"><img src="am.jpg"><h1 class="neon">Love You My Cutieee 🫶😚🩷</h1><div class="box">
-<button onclick="exitPage()">Exit ❌</button>
-</div></div><script>
+</p><button onclick="nextSlide()">Next 👉</button>
+
+</div><!-- Final --><div class="slide"><img src="am.jpg"><h1 class="neon">Love You My Cutieee 🫶😚🩷</h1><button onclick="exitPage()">Exit ❌</button>
+
+</div><script>
 
 let slides=document.querySelectorAll(".slide")
 let index=0
@@ -144,29 +141,55 @@ function nextSlide(){
 slides[index].classList.remove("active")
 index++
 
-if(index>=slides.length){
-index=slides.length-1
-}
-
 slides[index].classList.add("active")
 
-if(slides[index].id=="loveSlide"){
-startTyping()
+if(slides[index].id=="countdownSlide"){
+startCountdown()
 }
 
-if(index==2){
+if(index==4){
 document.getElementById("music").play()
 }
 
 }
 
-/* typing love letter */
+/* countdown */
+
+function startCountdown(){
+
+let count=3
+let el=document.getElementById("countdown")
+
+let timer=setInterval(()=>{
+
+if(count>1){
+count--
+el.innerHTML=count
+}
+else{
+
+el.innerHTML="Happy Birthday 🎂"
+
+clearInterval(timer)
+
+setTimeout(()=>{
+nextSlide()
+startTyping()
+},2000)
+
+}
+
+},1000)
+
+}
+
+/* typing */
 
 let text=`My Love ❤️
 Today is very special for me
 Because it's your birthday 🎂
 You are the most beautiful part of my life
-Your smile makes my world brighter ✨
+Your smile makes my world brighter
 I love you more than anything 💖`
 
 let i=0
@@ -181,11 +204,7 @@ i++
 setTimeout(type,40)
 }
 else{
-
-setTimeout(()=>{
-nextSlide()
-},3000)
-
+document.getElementById("nextBtn").style.display="block"
 }
 
 }
@@ -197,7 +216,7 @@ type()
 /* exit */
 
 function exitPage(){
-document.body.classList.add("exit")
+document.body.style.display="none"
 }
 
 /* falling hearts */
