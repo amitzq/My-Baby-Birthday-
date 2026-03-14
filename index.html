@@ -16,16 +16,33 @@ background:linear-gradient(135deg,#ff9a9e,#fbc2eb,#a18cd1);
 color:white;
 text-align:center;
 overflow:hidden;
+transition:1s;
 }
 
-/* slide */
+/* slides */
 
 .slide{
-display:flex;
+display:none;
 height:100vh;
 justify-content:center;
 align-items:center;
 flex-direction:column;
+padding:30px;
+}
+
+.active{
+display:flex;
+}
+
+/* images */
+
+img{
+width:260px;
+height:260px;
+object-fit:cover;
+border-radius:20px;
+margin-bottom:20px;
+box-shadow:0 10px 25px rgba(0,0,0,0.4);
 }
 
 /* button */
@@ -39,15 +56,73 @@ color:white;
 border:2px solid white;
 box-shadow:0 0 10px rgba(255,255,255,0.6);
 cursor:pointer;
+transition:0.3s;
+margin-top:20px;
 }
 
-/* 3D glowing hearts */
+button:hover{
+background:white;
+color:#ff4da6;
+}
+
+/* countdown */
+
+#countdown{
+font-size:70px;
+font-weight:bold;
+text-shadow:0 0 10px white,0 0 20px #ff4da6,0 0 40px #ff4da6;
+}
+
+/* typing */
+
+.typing{
+font-size:18px;
+max-width:330px;
+line-height:1.6;
+border-right:3px solid white;
+white-space:pre-line;
+overflow:hidden;
+animation:blinkCursor 0.7s infinite;
+}
+
+@keyframes blinkCursor{
+0%{border-color:white}
+50%{border-color:transparent}
+100%{border-color:white}
+}
+
+/* neon */
+
+.neon{
+font-size:40px;
+text-shadow:
+0 0 5px #ff4da6,
+0 0 10px #ff4da6,
+0 0 20px #ff4da6,
+0 0 40px #ff4da6;
+}
+
+/* Falling Hearts */
+
+.falling-heart{
+position:fixed;
+top:-20px;
+pointer-events:none;
+animation:fall 6s linear forwards;
+}
+
+@keyframes fall{
+0%{transform:translateY(-20px) rotate(0deg);opacity:1;}
+100%{transform:translateY(110vh) rotate(360deg);opacity:0;}
+}
+
+/* 3D Glowing Hearts */
 
 .glow-heart{
 position:fixed;
-bottom:-40px;
-color:#ff4da6;
+bottom:-50px;
 pointer-events:none;
+color:#ff4da6;
 
 text-shadow:
 0 0 5px #ff4da6,
@@ -55,48 +130,27 @@ text-shadow:
 0 0 20px #ff4da6,
 0 0 40px #ff4da6;
 
-animation:floatUp 7s linear forwards;
+animation:glowFloat 7s linear forwards;
 }
 
-@keyframes floatUp{
-
-0%{
-transform:translateY(0) scale(0.5) rotate(0deg);
-opacity:0;
+@keyframes glowFloat{
+0%{transform:translateY(0) scale(0.6) rotate(0deg);opacity:0;}
+20%{opacity:1;}
+100%{transform:translateY(-110vh) scale(1.3) rotate(360deg);opacity:0;}
 }
 
-20%{
-opacity:1;
-}
-
-100%{
-transform:translateY(-120vh) scale(1.2) rotate(360deg);
-opacity:0;
-}
-
-}
-
-/* rose petals */
+/* Rose Petals */
 
 .rose{
 position:fixed;
-top:-30px;
+top:-40px;
 pointer-events:none;
 animation:roseFall linear forwards;
 }
 
 @keyframes roseFall{
-
-0%{
-transform:translateY(-30px) rotate(0deg);
-opacity:1;
-}
-
-100%{
-transform:translateY(120vh) rotate(360deg);
-opacity:0;
-}
-
+0%{transform:translateY(-40px) rotate(0deg);opacity:1;}
+100%{transform:translateY(110vh) rotate(360deg);opacity:0;}
 }
 
 </style>
@@ -105,59 +159,229 @@ opacity:0;
 
 <body>
 
+<audio id="music" src="Song.mp3"></audio>
+
+<!-- Intro -->
+
+<div class="slide active">
+
+<h1>💖 A Special Surprise For You 💖</h1>
+
+<p>
+Someone who loves you very much 😚<br>
+made something special for you 🎁
+</p>
+
+<button onclick="nextSlide()">Tap Next Page 👉</button>
+
+</div>
+
+<!-- Surprise -->
+
 <div class="slide">
 
-<h1>💖 Birthday Surprise 💖</h1>
+<h1>Your Surprise 🎁</h1>
 
-<button>Tap To Continue</button>
+<p>
+Something beautiful is waiting for you 💞<br>
+Tap next to see it 😚
+</p>
+
+<button onclick="nextSlide()">Next 👉</button>
+
+</div>
+
+<!-- Countdown -->
+
+<div class="slide" id="countdownSlide">
+
+<h1 id="countdown">3...</h1>
+
+</div>
+
+<!-- Slide1 -->
+
+<div class="slide">
+
+<img src="Baby.jpg">
+
+<p class="typing" id="text1"></p>
+
+<button onclick="nextSlide()">Next 👉</button>
+
+</div>
+
+<!-- Slide2 -->
+
+<div class="slide">
+
+<img src="Cute.jpg">
+
+<p>
+Every moment with you feels magical ✨<br>
+Your smile melts my heart 💗<br>
+You are my dream girl 😍<br>
+You are my peace 🌸<br>
+I feel lucky to have you ❤️
+</p>
+
+<button onclick="nextSlide()">Next 👉</button>
+
+</div>
+
+<!-- Final -->
+
+<div class="slide">
+
+<h1 class="neon">Love You My Cutieee 🫶😚🩷</h1>
+
+<img src="am.jpg">
+
+<button onclick="exitPage()">Exit ❌</button>
 
 </div>
 
 <script>
 
-/* 3D glowing hearts */
+/* slides */
 
-setInterval(()=>{
+let slides=document.querySelectorAll(".slide")
+let index=0
+
+function nextSlide(){
+
+slides[index].classList.remove("active")
+index++
+
+slides[index].classList.add("active")
+
+if(slides[index].id=="countdownSlide"){
+startCountdown()
+}
+
+if(index==3){
+document.getElementById("music").play()
+typeWriter()
+}
+
+}
+
+/* countdown */
+
+function startCountdown(){
+
+let count=3
+let el=document.getElementById("countdown")
+
+let timer=setInterval(()=>{
+
+if(count>1){
+count--
+el.innerHTML=count+"..."
+}
+
+else if(count==1){
+
+count--
+el.innerHTML="Happy Birthday My Love 🎂💖"
+clearInterval(timer)
+
+setTimeout(()=>{
+nextSlide()
+},2000)
+
+}
+
+},1000)
+
+}
+
+/* typing */
+
+let text1=`Happy Birthday My Love 🎂💖
+You are the most beautiful girl in my life 😘
+Your smile makes my world brighter 🌸
+Your love makes me stronger 💞
+You are my happiness 🥰
+I promise to stay with you forever ❤️
+Love you so much baby 😚💋`
+
+let i=0
+
+function typeWriter(){
+
+if(i<text1.length){
+document.getElementById("text1").innerHTML+=text1.charAt(i)
+i++
+setTimeout(typeWriter,40)
+}
+
+}
+
+/* exit */
+
+function exitPage(){
+document.body.style.opacity="0"
+setTimeout(()=>{
+window.open('','_self')
+window.close()
+},1000)
+}
+
+/* Falling hearts */
+
+function createFallingHeart(){
 
 let heart=document.createElement("div")
-
-heart.className="glow-heart"
-
-heart.innerHTML="💖"
-
+heart.className="falling-heart"
+heart.innerHTML="❤️"
 heart.style.left=Math.random()*100+"vw"
+heart.style.fontSize=(12+Math.random()*20)+"px"
 
+document.body.appendChild(heart)
+
+setTimeout(()=>{heart.remove()},6000)
+
+}
+
+setInterval(createFallingHeart,400)
+
+/* Glowing hearts */
+
+function createGlowHeart(){
+
+let heart=document.createElement("div")
+heart.className="glow-heart"
+heart.innerHTML="💖"
+heart.style.left=Math.random()*100+"vw"
 heart.style.fontSize=(20+Math.random()*30)+"px"
 
 document.body.appendChild(heart)
 
-setTimeout(()=>heart.remove(),7000)
+setTimeout(()=>{heart.remove()},7000)
 
-},600)
+}
 
+setInterval(createGlowHeart,600)
 
+/* Rose petals */
 
-/* rose petals */
-
-setInterval(()=>{
+function createRose(){
 
 let rose=document.createElement("div")
-
 rose.className="rose"
-
 rose.innerHTML="🌹"
-
 rose.style.left=Math.random()*100+"vw"
-
-rose.style.fontSize=(18+Math.random()*20)+"px"
-
-rose.style.animationDuration=(5+Math.random()*4)+"s"
+rose.style.fontSize=(20+Math.random()*20)+"px"
+rose.style.animationDuration=(4+Math.random()*4)+"s"
 
 document.body.appendChild(rose)
 
-setTimeout(()=>rose.remove(),9000)
+setTimeout(()=>{rose.remove()},8000)
 
-},800)
+}
+
+setInterval(createRose,500)
 
 </script>
 
