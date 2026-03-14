@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html><html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Birthday Surprise</title>
-
-<style>
-
-/* beautiful gradient background */
+<title>Birthday Surprise</title><style>
 
 body{
 margin:0;
@@ -16,18 +10,17 @@ color:white;
 text-align:center;
 overflow:hidden;
 
-background:linear-gradient(-45deg,#ff9a9e,#fbc2eb,#a18cd1,#fad0c4);
+background:linear-gradient(-45deg,#ff9a9e,#fad0c4,#fbc2eb,#a18cd1);
 background-size:400% 400%;
-animation:bgMove 10s infinite;
+animation:bgmove 10s infinite;
+transition:1s;
 }
 
-@keyframes bgMove{
+@keyframes bgmove{
 0%{background-position:0% 50%}
 50%{background-position:100% 50%}
 100%{background-position:0% 50%}
 }
-
-/* slides */
 
 .slide{
 display:none;
@@ -42,29 +35,19 @@ padding:20px;
 display:flex;
 }
 
-/* tap box */
-
-.tapBox{
-
+.box{
 border:3px solid white;
-padding:40px;
+padding:30px;
 border-radius:20px;
-
-box-shadow:
-0 0 10px white,
-0 0 20px #ff4da6;
-
+box-shadow:0 0 20px #ff4da6;
+margin-top:20px;
 }
-
-/* image */
 
 img{
-width:250px;
+width:260px;
 border-radius:20px;
-margin-bottom:20px;
+margin-bottom:15px;
 }
-
-/* button */
 
 button{
 padding:12px 25px;
@@ -73,27 +56,51 @@ border:2px solid white;
 background:transparent;
 color:white;
 cursor:pointer;
-margin-top:15px;
+margin-top:10px;
 }
 
-/* neon */
-
-.neon{
-font-size:38px;
-text-shadow:
-0 0 5px #ff4da6,
-0 0 10px #ff4da6,
-0 0 20px #ff4da6,
-0 0 40px #ff4da6;
+.loading{
+font-size:40px;
+animation:blink 1s infinite;
 }
 
-/* countdown */
+@keyframes blink{
+0%{opacity:1}
+50%{opacity:0.3}
+100%{opacity:1}
+}
 
 #countdown{
 font-size:70px;
 }
 
-/* love falling */
+.neon{
+font-size:40px;
+text-shadow:0 0 10px #ff4da6,0 0 20px #ff4da6,0 0 40px #ff4da6;
+}
+
+/* typing effect */
+
+.typing{
+font-size:20px;
+max-width:350px;
+white-space:pre-line;
+border-right:3px solid white;
+overflow:hidden;
+animation:blinkCursor .8s infinite;
+}
+
+@keyframes blinkCursor{
+0%{border-color:white}
+50%{border-color:transparent}
+100%{border-color:white}
+}
+
+.exit{
+transform:translateX(100%);
+opacity:0;
+transition:1s;
+}
 
 .love{
 position:fixed;
@@ -107,89 +114,55 @@ animation:loveFall linear forwards;
 100%{transform:translateY(110vh);}
 }
 
-</style>
-</head>
+</style></head><body><audio id="music" src="Song.mp3"></audio>
 
-<body>
-
-<audio id="music" src="Song.mp3"></audio>
-
-<!-- Tap Page -->
-
-<div class="slide active">
-
-<div class="tapBox">
-
+<!-- Tap Page --><div class="slide active"><div class="box">
 <h1>💖 Tap For Your Surprise 💖</h1>
-
-<p>Something special is waiting for you ❤️</p>
-
 <button onclick="nextSlide()">Tap Next Page 👉</button>
-
-</div>
-
-</div>
-
-<!-- Slide 1 -->
-
-<div class="slide">
-
-<img src="Baby.jpg">
-
-<p>
-Happy Birthday My Love 🎂❤️<br>
-You are the most beautiful girl 😘<br>
-Your smile melts my heart 💗<br>
-You are my happiness 🥰<br>
-My world feels complete with you 🌍<br>
-I love you more every day 💋<br>
-Forever mine my cutie 🫶
-</p>
-
+</div></div><!-- Loading --><div class="slide"><div class="box">
+<h1 class="loading">Loading Surprise... ❤️</h1>
 <button onclick="nextSlide()">Next 👉</button>
-
-</div>
-
-<!-- Countdown -->
-
-<div class="slide" id="countdownSlide">
-
+</div></div><!-- Countdown --><div class="slide" id="countdownSlide"><div class="box">
 <h1 id="countdown">3...</h1>
-
 <button onclick="nextSlide()">Next 👉</button>
-
-</div>
-
-<!-- Slide 2 -->
-
-<div class="slide">
-
-<img src="Cute.jpg">
-
-<p>
-Every moment with you is magical ✨<br>
+</div></div><!-- Typing Love Letter --><div class="slide"><p class="typing" id="loveText"></p><div class="box">
+<button onclick="nextSlide()">Tap Next Page 👉</button>
+</div></div><!-- Baby --><div class="slide"><img src="Baby.jpg"><p>
+Happy Birthday My Love 🎂❤️<br>
+You are my happiness 😘<br>
+Your smile melts my heart 💗<br>
+I love you forever 💋
+</p><div class="box">
+<button onclick="nextSlide()">Next 👉</button>
+</div></div><!-- Cute --><div class="slide"><img src="Cute.jpg"><p>
+You are my dream girl 😍<br>
 Your eyes shine like stars 🌟<br>
-Your smile gives me peace 💞<br>
-You make my life beautiful 🌸<br>
-I feel lucky to have you ❤️<br>
-You are my dream girl 😍
-</p>
-
+Life is beautiful with you 💞
+</p><div class="box">
 <button onclick="nextSlide()">Next 👉</button>
-
-</div>
-
-<!-- Final -->
-
-<div class="slide">
-
-<img src="am.jpg">
-
-<h1 class="neon">Love You My Cutieee 🫶😚🩷</h1>
-
-</div>
-
-<script>
+</div></div><!-- IMG --><div class="slide"><img src="IMG.jpg"><p>
+Every moment with you is magical ✨<br>
+You make my life beautiful 🌸
+</p><div class="box">
+<button onclick="nextSlide()">Next 👉</button>
+</div></div><!-- Lxm --><div class="slide"><img src="Lxm.jpg"><p>
+I feel lucky to have you ❤️<br>
+You are my sunshine ☀️
+</p><div class="box">
+<button onclick="nextSlide()">Next 👉</button>
+</div></div><!-- Pic --><div class="slide"><img src="Pic.jpg"><p>
+Your love means everything 💖<br>
+I promise to stay with you forever 🫶
+</p><div class="box">
+<button onclick="nextSlide()">Next 👉</button>
+</div></div><!-- bb --><div class="slide"><img src="bb.jpg"><p>
+My heart beats for you 💗<br>
+I can't imagine life without you 😘
+</p><div class="box">
+<button onclick="nextSlide()">Next 👉</button>
+</div></div><!-- Final --><div class="slide"><img src="am.jpg"><h1 class="neon">Love You My Cutieee 🫶😚🩷</h1><div class="box">
+<button onclick="exitPage()">Exit ❌</button>
+</div></div><script>
 
 let slides=document.querySelectorAll(".slide")
 let index=0
@@ -209,7 +182,7 @@ if(slides[index].id=="countdownSlide"){
 startCountdown()
 }
 
-if(index==2){
+if(index==4){
 document.getElementById("music").play()
 }
 
@@ -239,7 +212,36 @@ clearInterval(timer)
 
 }
 
-/* love animation */
+/* typing love letter */
+
+let text=`My Love ❤️
+Today is very special for me
+Because it's your birthday 🎂
+You are the most beautiful part of my life
+Your smile makes my world brighter
+I love you more than anything 💖`
+
+let i=0
+
+function typeWriter(){
+
+if(i<text.length){
+document.getElementById("loveText").innerHTML+=text.charAt(i)
+i++
+setTimeout(typeWriter,40)
+}
+
+}
+
+typeWriter()
+
+/* exit */
+
+function exitPage(){
+document.body.classList.add("exit")
+}
+
+/* falling love animation */
 
 setInterval(()=>{
 
@@ -254,13 +256,9 @@ love.style.animationDuration=(4+Math.random()*3)+"s"
 
 document.body.appendChild(love)
 
-setTimeout(()=>{
-love.remove()
-},7000)
+setTimeout(()=>love.remove(),7000)
 
 },400)
 
-</script>
-
-</body>
+</script></body>
 </html>
