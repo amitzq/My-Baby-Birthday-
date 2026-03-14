@@ -13,7 +13,6 @@ overflow:hidden;
 background:linear-gradient(-45deg,#ff9a9e,#fad0c4,#fbc2eb,#a18cd1);
 background-size:400% 400%;
 animation:bgmove 10s infinite;
-transition:1s;
 }
 
 @keyframes bgmove{
@@ -37,10 +36,9 @@ display:flex;
 
 .box{
 border:3px solid white;
-padding:30px;
-border-radius:20px;
+padding:35px;
+border-radius:25px;
 box-shadow:0 0 20px #ff4da6;
-margin-top:20px;
 }
 
 img{
@@ -56,37 +54,19 @@ border:2px solid white;
 background:transparent;
 color:white;
 cursor:pointer;
-margin-top:10px;
-}
-
-.loading{
-font-size:40px;
-animation:blink 1s infinite;
-}
-
-@keyframes blink{
-0%{opacity:1}
-50%{opacity:0.3}
-100%{opacity:1}
-}
-
-#countdown{
-font-size:70px;
+margin-top:15px;
 }
 
 .neon{
-font-size:40px;
+font-size:45px;
 text-shadow:0 0 10px #ff4da6,0 0 20px #ff4da6,0 0 40px #ff4da6;
 }
 
-/* typing effect */
-
 .typing{
-font-size:20px;
+font-size:22px;
 max-width:350px;
 white-space:pre-line;
 border-right:3px solid white;
-overflow:hidden;
 animation:blinkCursor .8s infinite;
 }
 
@@ -116,18 +96,10 @@ animation:loveFall linear forwards;
 
 </style></head><body><audio id="music" src="Song.mp3"></audio>
 
-<!-- Tap Page --><div class="slide active"><div class="box">
-<h1>💖 Tap For Your Surprise 💖</h1>
-<button onclick="nextSlide()">Tap Next Page 👉</button>
-</div></div><!-- Loading --><div class="slide"><div class="box">
-<h1 class="loading">Loading Surprise... ❤️</h1>
+<!-- Birthday Page --><div class="slide active"><div class="box">
+<h1 class="neon">Happy Birthday My Love 🎂💖</h1>
 <button onclick="nextSlide()">Next 👉</button>
-</div></div><!-- Countdown --><div class="slide" id="countdownSlide"><div class="box">
-<h1 id="countdown">3...</h1>
-<button onclick="nextSlide()">Next 👉</button>
-</div></div><!-- Typing Love Letter --><div class="slide"><p class="typing" id="loveText"></p><div class="box">
-<button onclick="nextSlide()">Tap Next Page 👉</button>
-</div></div><!-- Baby --><div class="slide"><img src="Baby.jpg"><p>
+</div></div><!-- Love Letter Page --><div class="slide" id="loveSlide"><p class="typing" id="loveText"></p></div><!-- Baby --><div class="slide"><img src="Baby.jpg"><p>
 Happy Birthday My Love 🎂❤️<br>
 You are my happiness 😘<br>
 Your smile melts my heart 💗<br>
@@ -178,37 +150,13 @@ index=slides.length-1
 
 slides[index].classList.add("active")
 
-if(slides[index].id=="countdownSlide"){
-startCountdown()
+if(slides[index].id=="loveSlide"){
+startTyping()
 }
 
-if(index==4){
+if(index==2){
 document.getElementById("music").play()
 }
-
-}
-
-/* countdown */
-
-function startCountdown(){
-
-let count=3
-let el=document.getElementById("countdown")
-
-let timer=setInterval(()=>{
-
-if(count>1){
-count--
-el.innerHTML=count+"..."
-}
-
-else if(count==1){
-count--
-el.innerHTML="Happy Birthday My Love 🎂💖"
-clearInterval(timer)
-}
-
-},1000)
 
 }
 
@@ -218,22 +166,33 @@ let text=`My Love ❤️
 Today is very special for me
 Because it's your birthday 🎂
 You are the most beautiful part of my life
-Your smile makes my world brighter
+Your smile makes my world brighter ✨
 I love you more than anything 💖`
 
 let i=0
 
-function typeWriter(){
+function startTyping(){
+
+function type(){
 
 if(i<text.length){
 document.getElementById("loveText").innerHTML+=text.charAt(i)
 i++
-setTimeout(typeWriter,40)
+setTimeout(type,40)
 }
+else{
+
+setTimeout(()=>{
+nextSlide()
+},3000)
 
 }
 
-typeWriter()
+}
+
+type()
+
+}
 
 /* exit */
 
@@ -241,7 +200,7 @@ function exitPage(){
 document.body.classList.add("exit")
 }
 
-/* falling love animation */
+/* falling hearts */
 
 setInterval(()=>{
 
