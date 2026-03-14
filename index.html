@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,8 +18,6 @@ overflow:hidden;
 transition:1s;
 }
 
-/* slides */
-
 .slide{
 display:none;
 height:100vh;
@@ -34,8 +31,6 @@ padding:30px;
 display:flex;
 }
 
-/* images */
-
 img{
 width:260px;
 height:260px;
@@ -43,123 +38,52 @@ object-fit:cover;
 border-radius:20px;
 margin-bottom:20px;
 box-shadow:0 10px 25px rgba(0,0,0,0.4);
-animation:zoom 8s infinite alternate;
 }
-
-@keyframes zoom{
-from{transform:scale(1)}
-to{transform:scale(1.1)}
-}
-
-/* button */
 
 button{
-
 padding:14px 28px;
 font-size:16px;
 border-radius:12px;
-
 background:transparent;
 color:white;
-
 border:2px solid white;
-
 box-shadow:0 0 10px rgba(255,255,255,0.6);
-
 cursor:pointer;
-
 transition:0.3s;
-
 margin-top:20px;
-
 }
 
 button:hover{
-
 background:white;
 color:#ff4da6;
-
-box-shadow:0 0 20px #ff4da6;
-
 }
 
-/* typing */
+#countdown{
+font-size:70px;
+font-weight:bold;
+text-shadow:0 0 10px white,0 0 20px #ff4da6,0 0 40px #ff4da6;
+}
+
+.neon{
+font-size:40px;
+text-shadow:0 0 5px #ff4da6,0 0 10px #ff4da6,0 0 20px #ff4da6,0 0 40px #ff4da6;
+}
 
 .typing{
-
 font-size:18px;
 max-width:330px;
 line-height:1.6;
-
 border-right:3px solid white;
-
 white-space:pre-line;
 overflow:hidden;
-
 animation:blinkCursor 0.7s infinite;
-
 }
 
 @keyframes blinkCursor{
-
 0%{border-color:white}
 50%{border-color:transparent}
 100%{border-color:white}
-
 }
-
-/* loading */
-
-.loading{
-font-size:24px;
-animation:blink 1s infinite;
-}
-
-@keyframes blink{
-0%{opacity:1}
-50%{opacity:0.4}
-100%{opacity:1}
-}
-
-/* countdown */
-
-#countdown{
-
-font-size:70px;
-font-weight:bold;
-
-text-shadow:
-0 0 10px white,
-0 0 20px #ff4da6,
-0 0 40px #ff4da6;
-
-animation:pulse 1s infinite;
-
-}
-
-@keyframes pulse{
-
-0%{transform:scale(1)}
-50%{transform:scale(1.2)}
-100%{transform:scale(1)}
-
-}
-
-/* neon */
-
-.neon{
-
-font-size:40px;
-
-text-shadow:
-0 0 5px #ff4da6,
-0 0 10px #ff4da6,
-0 0 20px #ff4da6,
-0 0 40px #ff4da6;
-
-}
-
-/* hearts */
 
 .heart{
 position:fixed;
@@ -174,14 +98,13 @@ animation:fall 5s linear infinite;
 }
 
 </style>
-
 </head>
 
 <body>
 
 <audio id="music" src="Song.mp3"></audio>
 
-<!-- intro -->
+<!-- Intro -->
 
 <div class="slide active">
 
@@ -196,7 +119,7 @@ made something special for you 🎁
 
 </div>
 
-<!-- surprise -->
+<!-- Surprise -->
 
 <div class="slide">
 
@@ -211,27 +134,15 @@ Tap next to see it 😚
 
 </div>
 
-<!-- loading -->
+<!-- Countdown -->
 
-<div class="slide">
-
-<h1 class="loading">Loading Your Surprise ❤️</h1>
-
-<button onclick="nextSlide()">Continue 👉</button>
-
-</div>
-
-<!-- countdown -->
-
-<div class="slide">
+<div class="slide" id="countdownSlide">
 
 <h1 id="countdown">3...</h1>
 
-<button onclick="nextSlide()">Start 🎉</button>
-
 </div>
 
-<!-- slide1 -->
+<!-- Slide1 -->
 
 <div class="slide">
 
@@ -243,68 +154,42 @@ Tap next to see it 😚
 
 </div>
 
-<!-- slide2 -->
+<!-- Slide2 -->
 
 <div class="slide">
 
 <img src="Cute.jpg">
 
 <p>
-
 Every moment with you feels magical ✨<br>
 Your smile melts my heart 💗<br>
 You are my dream girl 😍<br>
 You are my peace 🌸<br>
-I feel lucky to have you ❤️<br>
-Stay with me forever 🫶
-
+I feel lucky to have you ❤️
 </p>
 
 <button onclick="nextSlide()">Next 👉</button>
 
 </div>
 
-<!-- slide3 -->
+<!-- Slide3 -->
 
 <div class="slide">
 
 <img src="IMG.jpg">
 
 <p>
-
 You are my sunshine ☀️<br>
 You are my happiness 💞<br>
 You are my everything ❤️<br>
-Your love means the world to me 🌎<br>
-I love you more every day 😚
-
+Your love means the world to me 🌎
 </p>
 
 <button onclick="nextSlide()">Next 👉</button>
 
 </div>
 
-<!-- slide4 -->
-
-<div class="slide">
-
-<img src="Pic.jpg">
-
-<p>
-
-May your life always be full of happiness 🌸<br>
-May your dreams come true ✨<br>
-May your smile never fade 😊<br>
-You deserve all the love 💞<br>
-Happy Birthday My Love 🎂❤️
-
-</p>
-
-<button onclick="nextSlide()">Next 👉</button>
-
-</div>
-
-<!-- final -->
+<!-- Final -->
 
 <div class="slide">
 
@@ -318,24 +203,21 @@ Happy Birthday My Love 🎂❤️
 
 <script>
 
-/* slide control */
-
 let slides=document.querySelectorAll(".slide")
 let index=0
 
 function nextSlide(){
 
 slides[index].classList.remove("active")
-
 index++
 
 slides[index].classList.add("active")
 
-if(index==3){
+if(slides[index].id=="countdownSlide"){
 startCountdown()
 }
 
-if(index==4){
+if(index==3){
 document.getElementById("music").play()
 typeWriter()
 }
@@ -352,17 +234,18 @@ let el=document.getElementById("countdown")
 let timer=setInterval(()=>{
 
 if(count>1){
-
 count--
 el.innerHTML=count+"..."
-
 }
 
 else if(count==1){
-
 count--
 el.innerHTML="Happy Birthday My Love 🎂💖"
 clearInterval(timer)
+
+setTimeout(()=>{
+nextSlide()
+},2000)
 
 }
 
@@ -372,7 +255,7 @@ clearInterval(timer)
 
 /* typing */
 
-let text1 = `Happy Birthday My Love 🎂💖
+let text1=`Happy Birthday My Love 🎂💖
 You are the most beautiful girl in my life 😘
 Your smile makes my world brighter 🌸
 Your love makes me stronger 💞
@@ -384,14 +267,10 @@ let i=0
 
 function typeWriter(){
 
-if(i < text1.length){
-
-document.getElementById("text1").innerHTML += text1.charAt(i)
-
+if(i<text1.length){
+document.getElementById("text1").innerHTML+=text1.charAt(i)
 i++
-
 setTimeout(typeWriter,40)
-
 }
 
 }
@@ -399,16 +278,11 @@ setTimeout(typeWriter,40)
 /* exit */
 
 function exitPage(){
-
 document.body.style.opacity="0"
-
 setTimeout(()=>{
-
 window.open('','_self')
 window.close()
-
 },1000)
-
 }
 
 /* hearts */
@@ -416,21 +290,15 @@ window.close()
 setInterval(()=>{
 
 let heart=document.createElement("div")
-
 heart.className="heart"
-
 heart.innerHTML="❤️"
-
 heart.style.left=Math.random()*100+"vw"
-
 heart.style.fontSize=(10+Math.random()*20)+"px"
 
 document.body.appendChild(heart)
 
 setTimeout(()=>{
-
 heart.remove()
-
 },5000)
 
 },300)
