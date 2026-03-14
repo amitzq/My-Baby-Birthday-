@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,8 +18,6 @@ overflow:hidden;
 transition:1s;
 }
 
-/* slides */
-
 .slide{
 display:none;
 height:100vh;
@@ -34,8 +31,6 @@ padding:30px;
 display:flex;
 }
 
-/* images */
-
 img{
 width:260px;
 height:260px;
@@ -44,8 +39,6 @@ border-radius:20px;
 margin-bottom:20px;
 box-shadow:0 10px 25px rgba(0,0,0,0.4);
 }
-
-/* button */
 
 button{
 padding:14px 28px;
@@ -65,15 +58,16 @@ background:white;
 color:#ff4da6;
 }
 
-/* countdown */
-
 #countdown{
 font-size:70px;
 font-weight:bold;
 text-shadow:0 0 10px white,0 0 20px #ff4da6,0 0 40px #ff4da6;
 }
 
-/* typing */
+.neon{
+font-size:40px;
+text-shadow:0 0 5px #ff4da6,0 0 10px #ff4da6,0 0 20px #ff4da6,0 0 40px #ff4da6;
+}
 
 .typing{
 font-size:18px;
@@ -91,70 +85,19 @@ animation:blinkCursor 0.7s infinite;
 100%{border-color:white}
 }
 
-/* neon */
-
-.neon{
-font-size:40px;
-text-shadow:
-0 0 5px #ff4da6,
-0 0 10px #ff4da6,
-0 0 20px #ff4da6,
-0 0 40px #ff4da6;
-}
-
-/* Falling Hearts */
-
-.falling-heart{
+.heart{
 position:fixed;
-top:-20px;
-pointer-events:none;
-animation:fall 6s linear forwards;
+top:-10px;
+color:#ff4d6d;
+animation:fall 5s linear infinite;
 }
 
 @keyframes fall{
-0%{transform:translateY(-20px) rotate(0deg);opacity:1;}
-100%{transform:translateY(110vh) rotate(360deg);opacity:0;}
-}
-
-/* 3D Glowing Hearts */
-
-.glow-heart{
-position:fixed;
-bottom:-50px;
-pointer-events:none;
-color:#ff4da6;
-
-text-shadow:
-0 0 5px #ff4da6,
-0 0 10px #ff4da6,
-0 0 20px #ff4da6,
-0 0 40px #ff4da6;
-
-animation:glowFloat 7s linear forwards;
-}
-
-@keyframes glowFloat{
-0%{transform:translateY(0) scale(0.6) rotate(0deg);opacity:0;}
-20%{opacity:1;}
-100%{transform:translateY(-110vh) scale(1.3) rotate(360deg);opacity:0;}
-}
-
-/* Rose Petals */
-
-.rose{
-position:fixed;
-top:-40px;
-pointer-events:none;
-animation:roseFall linear forwards;
-}
-
-@keyframes roseFall{
-0%{transform:translateY(-40px) rotate(0deg);opacity:1;}
-100%{transform:translateY(110vh) rotate(360deg);opacity:0;}
+0%{transform:translateY(-10px)}
+100%{transform:translateY(110vh)}
 }
 
 </style>
-
 </head>
 
 <body>
@@ -229,6 +172,23 @@ I feel lucky to have you ❤️
 
 </div>
 
+<!-- Slide3 -->
+
+<div class="slide">
+
+<img src="IMG.jpg">
+
+<p>
+You are my sunshine ☀️<br>
+You are my happiness 💞<br>
+You are my everything ❤️<br>
+Your love means the world to me 🌎
+</p>
+
+<button onclick="nextSlide()">Next 👉</button>
+
+</div>
+
 <!-- Final -->
 
 <div class="slide">
@@ -242,8 +202,6 @@ I feel lucky to have you ❤️
 </div>
 
 <script>
-
-/* slides */
 
 let slides=document.querySelectorAll(".slide")
 let index=0
@@ -281,7 +239,6 @@ el.innerHTML=count+"..."
 }
 
 else if(count==1){
-
 count--
 el.innerHTML="Happy Birthday My Love 🎂💖"
 clearInterval(timer)
@@ -328,60 +285,23 @@ window.close()
 },1000)
 }
 
-/* Falling hearts */
+/* hearts */
 
-function createFallingHeart(){
+setInterval(()=>{
 
 let heart=document.createElement("div")
-heart.className="falling-heart"
+heart.className="heart"
 heart.innerHTML="❤️"
 heart.style.left=Math.random()*100+"vw"
-heart.style.fontSize=(12+Math.random()*20)+"px"
+heart.style.fontSize=(10+Math.random()*20)+"px"
 
 document.body.appendChild(heart)
 
-setTimeout(()=>{heart.remove()},6000)
+setTimeout(()=>{
+heart.remove()
+},5000)
 
-}
-
-setInterval(createFallingHeart,400)
-
-/* Glowing hearts */
-
-function createGlowHeart(){
-
-let heart=document.createElement("div")
-heart.className="glow-heart"
-heart.innerHTML="💖"
-heart.style.left=Math.random()*100+"vw"
-heart.style.fontSize=(20+Math.random()*30)+"px"
-
-document.body.appendChild(heart)
-
-setTimeout(()=>{heart.remove()},7000)
-
-}
-
-setInterval(createGlowHeart,600)
-
-/* Rose petals */
-
-function createRose(){
-
-let rose=document.createElement("div")
-rose.className="rose"
-rose.innerHTML="🌹"
-rose.style.left=Math.random()*100+"vw"
-rose.style.fontSize=(20+Math.random()*20)+"px"
-rose.style.animationDuration=(4+Math.random()*4)+"s"
-
-document.body.appendChild(rose)
-
-setTimeout(()=>{rose.remove()},8000)
-
-}
-
-setInterval(createRose,500)
+},300)
 
 </script>
 
