@@ -1,11 +1,9 @@
 <!DOCTYPE html><html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Birthday Surprise</title><style>
+<head><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Birthday Surprise</title><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"><style>
 
 body{
 margin:0;
-font-family:sans-serif;
+font-family:'Poppins',sans-serif;
 color:white;
 text-align:center;
 background:linear-gradient(-45deg,#ff9a9e,#fad0c4,#fbc2eb,#a18cd1);
@@ -45,6 +43,33 @@ border-radius:20px;
 margin-bottom:15px;
 }
 
+/* neon glow wish box */
+
+.wish-box{
+
+background:rgba(0,0,0,0.25);
+
+border:2px solid #ff4da6;
+
+padding:20px;
+
+border-radius:18px;
+
+max-width:340px;
+
+margin-top:10px;
+
+box-shadow:
+0 0 10px #ff4da6,
+0 0 20px #ff4da6,
+0 0 40px #ff4da6;
+}
+
+.wish-box p{
+font-size:17px;
+line-height:1.6;
+}
+
 button{
 padding:12px 25px;
 border-radius:10px;
@@ -71,105 +96,92 @@ animation:blinkCursor .8s infinite;
 
 .neon{
 font-size:40px;
-text-shadow:0 0 10px #ff4da6,0 0 20px #ff4da6,0 0 40px #ff4da6;
+text-shadow:
+0 0 10px #ff4da6,
+0 0 20px #ff4da6,
+0 0 40px #ff4da6;
 }
 
 </style></head><body><audio id="music" src="Song.mp3"></audio>
 
-<!-- Tap Page --><div class="slide active">
-<div class="box">
-<h1>💖 Tap For Your Surprise 💖</h1>
-<button onclick="nextSlide()">Tap Next Page 👉</button>
-</div>
-</div><!-- Loading --><div class="slide">
-<div class="box">
-<h1>Loading Surprise... ❤️</h1>
-<button onclick="nextSlide()">Next 👉</button>
-</div>
-</div><!-- Birthday --><div class="slide">
-<h1 style="font-size:55px;">Happy Birthday My Baby 😚🩷🫶🥮</h1>
-<button onclick="nextSlide()">Next 👉</button>
+<!-- Tap Page --><div class="slide active"><div class="box"><h1>💖 Tap For Your Surprise 💖</h1><button onclick="nextSlide()">Tap Next Page 👉</button>
+
+</div></div><!-- Loading --><div class="slide"><div class="box"><h1>Loading Surprise... ❤️</h1><button onclick="nextSlide()">Next 👉</button>
+
+</div></div><!-- Birthday --><div class="slide"><h1 style="font-size:55px;">
+Happy Birthday My Baby 😚🩷🫶🥮
+</h1><button onclick="nextSlide()">Next 👉</button>
+
 </div><!-- Love Letter --><div class="slide" id="loveSlide"><p class="typing" id="loveText"></p><button id="nextBtn" onclick="nextSlide()" style="display:none;">
 Tap Next Page 👉
-</button></div><!-- Baby --><div class="slide">
-<img src="Baby.jpg">
-<p>
+</button></div><!-- Baby --><div class="slide"><img src="Baby.jpg"><div class="wish-box"><p>
 Happy Birthday My Baby 🎂💖<br>
 You are the most beautiful girl in my life 😘<br>
 Your smile makes my heart melt every day 💗<br>
 Being with you is the best feeling ever 🥰<br>
 I feel lucky to have you in my life ❤️<br>
 Love you forever my cutie 💋🫶
-</p>
-<button onclick="nextSlide()">Next 👉</button>
-</div><!-- Cute --><div class="slide">
-<img src="Cute.jpg">
-<p>
+</p></div><button onclick="nextSlide()">Next 👉</button>
+
+</div><!-- Cute --><div class="slide"><img src="Cute.jpg"><div class="wish-box"><p>
 My Love 😘<br>
 Every moment with you feels magical ✨<br>
 Your eyes shine brighter than stars 🌟<br>
 You make my world full of happiness 💞<br>
 I never want to lose you ❤️<br>
 Love you so much baby 💋🥰
-</p>
-<button onclick="nextSlide()">Next 👉</button>
-</div><!-- IMG --><div class="slide">
-<img src="IMG.jpg">
-<p>
+</p></div><button onclick="nextSlide()">Next 👉</button>
+
+</div><!-- IMG --><div class="slide"><img src="IMG.jpg"><div class="wish-box"><p>
 My Sweetheart ❤️<br>
 You are my sunshine every day ☀️<br>
 Your love makes my life beautiful 🌸<br>
 Your smile gives me peace and joy 🥰<br>
 I promise to stay with you forever 🫶<br>
 Love you endlessly 💋😘
-</p>
-<button onclick="nextSlide()">Next 👉</button>
-</div><!-- Lxm --><div class="slide">
-<img src="Lxm.jpg">
-<p>
+</p></div><button onclick="nextSlide()">Next 👉</button>
+
+</div><!-- Lxm --><div class="slide"><img src="Lxm.jpg"><div class="wish-box"><p>
 My Princess 👑❤️<br>
 You are the most special person in my life 😘<br>
 Your love makes my heart happy 💞<br>
 I can't imagine my life without you 🥺<br>
 You are my dream girl forever 💗<br>
 Love you always baby 💋🥰
-</p>
-<button onclick="nextSlide()">Next 👉</button>
-</div><!-- Pic --><div class="slide">
-<img src="Pic.jpg">
-<p>
+</p></div><button onclick="nextSlide()">Next 👉</button>
+
+</div><!-- Pic --><div class="slide"><img src="Pic.jpg"><div class="wish-box"><p>
 My Cutie ❤️<br>
 Your smile makes my day brighter ☀️<br>
 Your love means everything to me 💞<br>
 I feel so lucky to have you 😘<br>
 I promise to always care for you 🫶<br>
 Love you more than anything 💋🥰
-</p>
-<button onclick="nextSlide()">Next 👉</button>
-</div><!-- bb --><div class="slide">
-<img src="bb.jpg">
-<p>
+</p></div><button onclick="nextSlide()">Next 👉</button>
+
+</div><!-- bb --><div class="slide"><img src="bb.jpg"><div class="wish-box"><p>
 My Forever Love ❤️<br>
 You are my happiness every day 😘<br>
 Your love fills my heart with joy 💞<br>
 You make my life complete 🥰<br>
 I promise to love you forever 🫶<br>
 Happy Birthday once again baby 🎂💋
-</p>
-<button onclick="nextSlide()">Next 👉</button>
-</div><!-- Final --><div class="slide">
-<img src="am.jpg">
-<h1 class="neon">Love You My Cutieee 🫶😚🩷</h1>
-<button onclick="exitPage()">Exit ❌</button>
+</p></div><button onclick="nextSlide()">Next 👉</button>
+
+</div><!-- Final --><div class="slide"><img src="am.jpg"><h1 class="neon">Love You My Cutieee 🫶😚🩷</h1><button onclick="exitPage()">Exit ❌</button>
+
 </div><script>
 
 let slides=document.querySelectorAll(".slide")
+
 let index=0
 
 function nextSlide(){
 
 slides[index].classList.remove("active")
+
 index++
+
 slides[index].classList.add("active")
 
 if(slides[index].id=="loveSlide"){
@@ -182,7 +194,7 @@ document.getElementById("music").play()
 
 }
 
-/* typing love letter */
+/* typing */
 
 let text=`My Love ❤️
 
@@ -203,12 +215,18 @@ function startTyping(){
 function type(){
 
 if(i<text.length){
+
 document.getElementById("loveText").innerHTML+=text.charAt(i)
+
 i++
+
 setTimeout(type,40)
+
 }
 else{
+
 document.getElementById("nextBtn").style.display="block"
+
 }
 
 }
@@ -218,7 +236,9 @@ type()
 }
 
 function exitPage(){
+
 document.body.style.display="none"
+
 }
 
 </script></body>
